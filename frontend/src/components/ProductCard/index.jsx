@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
           </p>
         </div>
         <div className="flex justify-around gap-3 mt-4">
-          <button onClick={() => addToCart(product)} className="btn bg-black text-white">Agregar al carrito</button>
+          <button onClick={() => addToCart(product)} className="btn bg-gray-600 hover:bg-gray-800 text-white">Agregar al carrito</button>
           <button className="btn">
             <NavLink to={`/productDetail/${product.id}`}>
               Detalles

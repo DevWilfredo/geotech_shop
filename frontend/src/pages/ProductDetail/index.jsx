@@ -2,68 +2,71 @@ import { useParams } from "react-router-dom";
 import Layout from "../../components/Layout";
 import * as lucideIcons from 'lucide-react';
 import { useCart } from "../../context/CartContext";
+import ProductCard from "../../components/ProductCard";
+import ProductCarousel from "../../components/ProductsCarousel";
 
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const { findSingleProduct, addToCart } = useCart();
+    const { findSingleProduct, addToCart, products } = useCart();
     const product = findSingleProduct(parseInt(id));
     return (
         <Layout>
-            <div className="breadcrumbs text-sm">
-                <ul>
-                    <li>
-                        <a>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                className="h-4 w-4 stroke-current">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                            </svg>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                className="h-4 w-4 stroke-current">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                            </svg>
-                            Documents
-                        </a>
-                    </li>
-                    <li>
-                        <span className="inline-flex items-center gap-2">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                className="h-4 w-4 stroke-current">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                            Add Document
-                        </span>
-                    </li>
-                </ul>
-            </div>
 
             <section className="py-8 antialiased dark:bg-gray-900 md:py-16">
+                <div className="breadcrumbs text-sm">
+                    <ul>
+                        <li>
+                            <a>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    className="h-4 w-4 stroke-current">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                                </svg>
+                                Catalog
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    className="h-4 w-4 stroke-current">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                                </svg>
+                                {product.title}
+                            </a>
+                        </li>
+                        <li>
+                            <span className="inline-flex items-center gap-2">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    className="h-4 w-4 stroke-current">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Details
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div className="divider"></div>
                 <div className="mx-auto grid max-w-screen-xl px-4 pb-8 md:grid-cols-12 lg:gap-12 lg:pb-16 xl:gap-5">
                     <div className="md:col-span-5 md:mt-0 md:flex justify-center items-center">
                         <img className="dark:hidden h-96 justify-center items-center" src={product.image} alt="shopping illustration" />
@@ -88,7 +91,7 @@ const ProductDetail = () => {
                             </div>
                         </div>
                         <div class="flex mt-6 gap-4">
-                            {product.options.map((option)=>(
+                            {product.options.map((option) => (
                                 <button class="w-full px-4 py-2 border border-gray-300 rounded-md bg-[#f8f8f8] shadow-2xl hover:scale-110 transition-all cursor-pointer">{option}</button>
                             ))}
                         </div>
@@ -116,7 +119,7 @@ const ProductDetail = () => {
                         </div>
                         <div className="flex gap-4 justify-around items-center mt-4">
                             <button className="btn btn-wide p-8">Add to whislist</button>
-                            <button onClick={()=>addToCart(product)} className="btn btn-wide bg-black text-white p-8">Add to cart</button>
+                            <button onClick={() => addToCart(product)} className="btn btn-wide bg-gray-600 hover:bg-gray-800 text-white p-8">Add to cart</button>
                         </div>
 
                         <div class="grid grid-cols-3 gap-4 mt-6">
@@ -148,9 +151,14 @@ const ProductDetail = () => {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-
+            </section>
+            <section>
+                <h1 className="text-3xl font-bold">Related Products</h1>
+                <div className="divider"></div>
+                <ProductCarousel products={products} />
             </section>
         </Layout>
     )
